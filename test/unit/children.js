@@ -4,7 +4,12 @@ import ReactDOM from 'react-dom';
 
 let x = 0;
 function createComponent() {
-  class Component extends HTMLElement {}
+  class Component extends HTMLElement {
+    constructor(...args) {
+      super(...args);
+      console.log('Component.constructor');
+    }
+  }
   window.customElements.define(`x-children-${x++}`, Component);
   return reactify(Component, { React, ReactDOM });
 }

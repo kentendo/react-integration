@@ -1,4 +1,7 @@
-// import 'babel?presets[]=es2015!skatejs-web-components/src/native-shim';
+import '../lib/custom-elements.min';
+import '../lib/shadydom.min';
+//import 'babel?presets[]=es2015!../lib/native-shim';
+import 'babel?presets[]=es2015!../node_modules/skatejs-web-components/dist/native-shim';
 import './unit/children';
 import './unit/events';
 import './unit/display-name';

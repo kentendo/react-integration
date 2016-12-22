@@ -5,6 +5,10 @@ import ReactDOM from 'react-dom';
 let x = 0;
 function createComponent(event) {
   class Component extends HTMLElement {
+    constructor(...args) {
+      super(...args);
+      console.log('Component.constructor');
+    }
     trigger() {
       this.dispatchEvent(new CustomEvent(event));
     }
@@ -23,7 +27,11 @@ describe('custom events', () => {
     const comp = ReactDOM.render(<Comp onClick={() => count++} />, window.fixture);
 
     setTimeout(() => {
-      ReactDOM.findDOMNode(comp).trigger();
+      const node = ReactDOM.findDOMNode(comp);
+      
+      console.log('node', node);
+
+      node.trigger();
       expect(count).to.equal(1);
       done();
     }, 1);
@@ -35,7 +43,9 @@ describe('custom events', () => {
     const comp = ReactDOM.render(<Comp onTest={() => count++} />, window.fixture);
 
     setTimeout(() => {
-      ReactDOM.findDOMNode(comp).trigger();
+      const node = ReactDOM.findDOMNode(comp);
+      console.log('ReactDOM.findDOMNode(comp)', node, node.tigger);
+      node.trigger();
       expect(count).to.equal(1);
       done();
     }, 1);
