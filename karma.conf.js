@@ -4,7 +4,8 @@ module.exports = function (config) {
 
   // WebComponentsJS for testing native APIs in older browsers.
   config.files = [
-    'node_modules/webcomponents.js/CustomElements.js',
+    'node_modules/@webcomponents/custom-elements/custom-elements.min.js',
+    'node_modules/@webcomponents/shadydom/shadydom.min.js',
   ].concat(config.files);
 
   // Ensure mobile browsers have enough time to run.

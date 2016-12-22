@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 
 let x = 0;
 function createComponentWithOpts(opts) {
-  return reactify(document.registerElement(`x-props-${x++}`, {
-    prototype: Object.create(HTMLElement.prototype, opts),
-  }));
+
+  class Component extends HTMLElement {};
+  Object.assign(Component, opts);
+  window.customElements.define(`x-props-${x++}`, Component);
+  return reactify(Component);
 }
 function createComponentWithProp(name, done) {
   return createComponentWithOpts({

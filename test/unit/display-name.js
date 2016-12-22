@@ -4,9 +4,11 @@ import ReactDOM from 'react-dom';
 
 describe('display-name', () => {
   it('should be a PasalCased version of the tagName', () => {
-    const Comp = reactify(document.registerElement('x-display-name-1', {
-      prototype: Object.create(HTMLElement.prototype),
-    }), { React, ReactDOM });
+
+    class Component extends HTMLElement {}
+    window.customElements.define('x-display-name-1', Component);
+    const Comp = reactify(Component, { React, ReactDOM });
+
     ReactDOM.render(React.createElement(Comp), window.fixture);
     expect(Comp.displayName).to.equal('XDisplayName_1');
   });

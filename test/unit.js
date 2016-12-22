@@ -1,3 +1,4 @@
+// import 'babel?presets[]=es2015!skatejs-web-components/src/native-shim';
 import './unit/children';
 import './unit/events';
 import './unit/display-name';

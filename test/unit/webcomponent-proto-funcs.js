@@ -2,28 +2,24 @@ import reactify from '../../src/index';
 
 let x = 0;
 function createComponent() {
-  return reactify(document.registerElement(`x-webcomponent-proto-funcs-${x++}`, {
-    prototype: Object.create(HTMLElement.prototype, {
-      prop: {
-        value: 'prop',
-      },
-      foo: {
-        value() {
-          return 'bar';
-        },
-      },
-      getProp: {
-        value() {
-          return this.prop;
-        },
-      },
-      getter: {
-        get() {
-          throw new Error('should not throw when reactifying');
-        },
-      },
-    }),
-  }));
+
+  class Component extends HTMLElement {
+    get prop() {
+      return 'prop';
+    }
+    foo() {
+      return 'bar';
+    }
+    getProp() {
+      return this.prop;
+    }
+    get getter() {
+      throw new Error('should not throw when reactifying');
+    }
+  }
+
+  window.customElements.define(`x-webcomponent-proto-funcs-${x++}`, Component);
+  return reactify(Component);
 }
 
 describe('Webcomponent prototype functions', () => {

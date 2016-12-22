@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 
 let x = 0;
 function createComponent() {
-  return reactify(document.registerElement(`x-children-${x++}`, {
-    prototype: Object.create(HTMLElement.prototype),
-  }), { React, ReactDOM });
+  class Component extends HTMLElement {}
+  window.customElements.define(`x-children-${x++}`, Component);
+  return reactify(Component, { React, ReactDOM });
 }
 
 describe('children', () => {

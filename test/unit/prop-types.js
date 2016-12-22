@@ -4,7 +4,11 @@ import ReactDOM from 'react-dom';
 
 describe('prop-types', () => {
   it('accepts propTypes', () => {
-    const Comp = reactify(document.registerElement('x-prop-types-1'), { React, ReactDOM });
+
+    class Component extends HTMLElement {}
+    window.customElements.define('x-prop-types-1', Component);
+    const Comp = reactify(Component, { React, ReactDOM });
+
     Comp.propTypes = {
       someRequiredAttr: React.PropTypes.string
     };
